@@ -9,24 +9,30 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import com.nile.pantelis.mycalculator.domain.CalculatorViewModel
 import com.nile.pantelis.mycalculator.ui.theme.ClearButtons
 import com.nile.pantelis.mycalculator.ui.theme.MyCalculatorTheme
-
 import com.nile.pantelis.mycalculator.ui.theme.MyGreen
 import com.nile.pantelis.mycalculator.ui.theme.OperationButtons
 
 @Composable
 fun CalculatorScreen(
+    viewModel: CalculatorViewModel,
     modifier: Modifier = Modifier
 ){
     val spacer = 8.dp
+    val state = viewModel.state
    Box(
        modifier = Modifier
            .fillMaxSize()
@@ -39,6 +45,18 @@ fun CalculatorScreen(
                .align(Alignment.BottomCenter),
            verticalArrangement = Arrangement.spacedBy(spacer)
        ) {
+           Text(
+               text = state.num1 + (state.operation?.symbol ?: "") + state.num2,
+               textAlign = TextAlign.End,
+               modifier = Modifier
+                   .fillMaxWidth()
+                   .padding(horizontal = 8.dp),
+               fontWeight = FontWeight.Light,
+               fontSize = 80.sp,
+               color = Color.White,
+               maxLines = 2
+
+           )
            Row (
                modifier = Modifier
                    .fillMaxWidth(),
@@ -48,6 +66,7 @@ fun CalculatorScreen(
                CalculatorButton(
                    text = "AC",
                    modifier = Modifier
+                       .padding(horizontal = 2.dp)
                        .aspectRatio(2f)
                        .weight(2f),
                    color = ClearButtons,
@@ -237,6 +256,7 @@ fun CalculatorScreen(
 fun CalculatorScreenPreview() {
     MyCalculatorTheme {
         CalculatorScreen(
+            viewModel = CalculatorViewModel()
         )
     }
 }
