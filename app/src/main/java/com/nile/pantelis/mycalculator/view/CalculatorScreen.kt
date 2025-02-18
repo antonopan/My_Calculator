@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import com.nile.pantelis.mycalculator.domain.CalculatorViewModel
 import com.nile.pantelis.mycalculator.ui.theme.ClearButtons
 import com.nile.pantelis.mycalculator.ui.theme.MyCalculatorTheme
@@ -28,7 +27,7 @@ import com.nile.pantelis.mycalculator.ui.theme.OperationButtons
 
 @Composable
 fun CalculatorScreen(
-    viewModel: CalculatorViewModel,
+    viewModel: Lazy<CalculatorViewModel>,
     modifier: Modifier = Modifier
 ){
     val spacer = 8.dp
