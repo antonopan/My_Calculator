@@ -19,6 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.nile.pantelis.mycalculator.domain.CalculatorAction
+import com.nile.pantelis.mycalculator.domain.CalculatorOperation
 import com.nile.pantelis.mycalculator.domain.CalculatorViewModel
 import com.nile.pantelis.mycalculator.ui.theme.ClearButtons
 import com.nile.pantelis.mycalculator.ui.theme.MyCalculatorTheme
@@ -27,7 +29,7 @@ import com.nile.pantelis.mycalculator.ui.theme.OperationButtons
 
 @Composable
 fun CalculatorScreen(
-    viewModel: Lazy<CalculatorViewModel>,
+    viewModel: CalculatorViewModel,
     modifier: Modifier = Modifier
 ){
     val spacer = 8.dp
@@ -69,7 +71,9 @@ fun CalculatorScreen(
                        .aspectRatio(2f)
                        .weight(2f),
                    color = ClearButtons,
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Clear)
+                   }
 
                )
                CalculatorButton(
@@ -77,7 +81,9 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Delete)
+                   }
                )
                CalculatorButton(
                    text = "/",
@@ -85,7 +91,9 @@ fun CalculatorScreen(
                        .aspectRatio(1f)
                        .weight(1f),
                    color = OperationButtons,
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Div))
+                   }
                )
            }
 
@@ -103,7 +111,9 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(7))
+                   }
 
                )
                CalculatorButton(
@@ -111,14 +121,18 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(8))
+                   }
                )
                CalculatorButton(
                    text = "9",
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(9))
+                   }
                )
                CalculatorButton(
                    text = "*",
@@ -126,7 +140,9 @@ fun CalculatorScreen(
                        .aspectRatio(1f)
                        .weight(1f),
                    color = OperationButtons,
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Mul))
+                   }
                )
            }
 
@@ -144,7 +160,9 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(4))
+                   }
 
                )
                CalculatorButton(
@@ -152,14 +170,18 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(5))
+                   }
                )
                CalculatorButton(
                    text = "6",
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(6))
+                   }
                )
                CalculatorButton(
                    text = "-",
@@ -167,7 +189,9 @@ fun CalculatorScreen(
                        .aspectRatio(1f)
                        .weight(1f),
                    color = OperationButtons,
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Sub))
+                   }
                )
            }
 
@@ -185,7 +209,9 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(1))
+                   }
 
                )
                CalculatorButton(
@@ -193,14 +219,18 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(2))
+                   }
                )
                CalculatorButton(
                    text = "3",
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(3))
+                   }
                )
                CalculatorButton(
                    text = "+",
@@ -208,7 +238,9 @@ fun CalculatorScreen(
                        .aspectRatio(1f)
                        .weight(1f),
                    color = OperationButtons,
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Add))
+                   }
                )
            }
 
@@ -226,7 +258,9 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(2f)
                        .weight(2f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Number(0))
+                   }
 
                )
                CalculatorButton(
@@ -234,7 +268,9 @@ fun CalculatorScreen(
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Decimal)
+                   }
                )
                CalculatorButton(
                    text = "=",
@@ -242,7 +278,9 @@ fun CalculatorScreen(
                        .aspectRatio(1f)
                        .weight(1f),
                    color = MyGreen,
-                   onClick = {print("Hello")}
+                   onClick = {
+                       viewModel.onAction(CalculatorAction.Calculate)
+                   }
                )
            }
        }
