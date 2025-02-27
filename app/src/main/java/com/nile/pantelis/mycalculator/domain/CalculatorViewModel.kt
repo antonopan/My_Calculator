@@ -40,7 +40,7 @@ class CalculatorViewModel : ViewModel() {
             }
 
             state = state.copy(
-                num1 = result.toString().take(15),
+                num1 = result.toString().take(7),
                 num2 = "",
                 operation = null
             )
