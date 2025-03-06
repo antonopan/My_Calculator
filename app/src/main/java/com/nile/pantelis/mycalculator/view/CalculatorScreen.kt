@@ -51,11 +51,12 @@ fun CalculatorScreen(
                textAlign = TextAlign.End,
                modifier = Modifier
                    .fillMaxWidth()
-                   .padding(horizontal = 8.dp),
+                   .padding(horizontal = 8.dp, vertical = 16.dp),
                fontWeight = FontWeight.Light,
                fontSize = 80.sp,
                color = Color.White,
-               maxLines = 2
+               maxLines = 2,
+               lineHeight = 80.sp
 
            )
            Row (
@@ -264,7 +265,7 @@ fun CalculatorScreen(
 
                )
                CalculatorButton(
-                   text = ",",
+                   text = ".",
                    modifier = Modifier
                        .aspectRatio(1f)
                        .weight(1f),
